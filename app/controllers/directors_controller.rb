@@ -1,25 +1,31 @@
 class DirectorsController < ApplicationController
   def index
-    directors = Director.all
+    @directors = Director.all
   end
 
   def show
-    @director = Director.find(params[:id])
+    @directors = Director.find(params[:id])
+    render "show_details.html.erb"
   end
 
-  def new
+  def new_form
+    @directors = Director.new
+
+
   end
 
   def create_row
-    @director = Director.new
-    @director.dob = params[:dob]
-    @director.name = params[:name]
-    @director.bio = params[:bio]
-    @director.image_url = params[:image_url]
+    @directors = Director.new
+    @directors.dob = params[:dob]
+    @directors.name = params[:name]
+    @directors.bio = params[:bio]
+    @directors.image_url = params[:image_url]
 
-    @director.save
+    @directors.save
 
-    render("show")
+    redirect_to ("http://localhost:3000/directors")
+
+
   end
 
   def edit_form
@@ -29,19 +35,18 @@ class DirectorsController < ApplicationController
   def update_row
     @director = Director.find(params[:id])
 
-    @director.dob = params[":dob"]
-    @director.name = params[":name"]
-    @director.bio = params[":bio"]
-    @director.image_url = params[":image_url"]
+    @director.dob = params[:the_dob]
+    @director.name = params[:the_name]
+    @director.bio = params[:the_bio]
+    @director.image_url = params[:the_image_url]
 
     @director.save
 
-    render("show")
+    redirect_to ("http://localhost:3000/directors")
   end
 
   def destroy
     @director = Director.find(params[:id])
-
     @director.destroy
   end
 end
