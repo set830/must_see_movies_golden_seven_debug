@@ -11,7 +11,6 @@ class DirectorsController < ApplicationController
   def new_form
     @directors = Director.new
 
-
   end
 
   def create_row

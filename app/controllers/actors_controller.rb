@@ -8,6 +8,7 @@ class ActorsController < ApplicationController
   end
 
   def new_form
+    @actors = Actor.new
   end
 
   def create_row
@@ -36,7 +37,7 @@ class ActorsController < ApplicationController
 
     @actor.save
 
-    render("show")
+    redirect_to ("http://localhost:3000/actors")
   end
 
   def destroy
